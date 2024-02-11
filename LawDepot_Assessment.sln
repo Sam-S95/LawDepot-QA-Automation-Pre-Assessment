@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawDepot_Assessment", "LawDepot_Assessment\LawDepot_Assessment.csproj", "{F2D401FE-2820-41A3-8083-7C15D415479E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2D401FE-2820-41A3-8083-7C15D415479E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D401FE-2820-41A3-8083-7C15D415479E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D401FE-2820-41A3-8083-7C15D415479E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D401FE-2820-41A3-8083-7C15D415479E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7271A7B-9542-4BF2-88A5-47D27F865482}
+	EndGlobalSection
+EndGlobal
