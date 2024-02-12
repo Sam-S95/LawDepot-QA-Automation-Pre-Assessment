@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="ExtentReports" Version="5.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="NUnit" Version="4.0.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="ExtentReports\" />
+    <Folder Include="Screenshots\" />
   </ItemGroup>
 
 </Project>

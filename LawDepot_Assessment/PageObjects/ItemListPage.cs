@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,33 +13,30 @@ namespace LawDepot_Assessment.PageObjects
 {
     public class ItemListPage
     {
-        public IWebDriver driver;
+        //declaring webdriver and webelements 
+        private IWebDriver driver;
+        private WebDriverWait wait;
         public IWebElement InventoryList { get; private set; }
         public IWebElement Backpack { get; private set; }
         public IWebElement BackpackAddBTN { get; private set; }
-        //public IWebElement BackpackRemoveBTN { get; private set; }
         public IWebElement ShoppingCartBTN { get; private set; }
 
         public ItemListPage(IWebDriver driver)
         {
+            //initializing WebDriverWait and passing driver object into constructor
             this.driver = driver;
-            // Initialize page elements
-            InventoryList = driver.FindElement(By.CssSelector(".inventory_list"));
-            Backpack = driver.FindElement(By.XPath("//div[normalize-space()='Sauce Labs Backpack']"));
-            BackpackAddBTN = driver.FindElement(By.XPath("//button[@id='add-to-cart-sauce-labs-backpack']"));
-            ShoppingCartBTN = driver.FindElement(By.XPath("//a[@class='shopping_cart_link']"));
-            //BackpackRemoveBTN = driver.FindElement(By.XPath("//button[@id='remove-sauce-labs-backpack']"));
-
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         }
 
-        /*        public void DynamicRemoveButton()
-                {
-                    // Wait for the remove button to appear
-                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                    BackpackRemoveBTN = wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@id='remove-sauce-labs-backpack']")));
-
-                }*/
+        public void InitializePageElements()
+        {
+            // Initialize page elements
+            InventoryList = wait.Until(ExpectedConditions.ElementExists(By.CssSelector(".inventory_list")));
+            Backpack = wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[normalize-space()='Sauce Labs Backpack']")));
+            BackpackAddBTN = wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@id='add-to-cart-sauce-labs-backpack']")));
+            ShoppingCartBTN = wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[@class='shopping_cart_link']")));
+        }
 
 
         public void AssertItemList()
@@ -57,16 +55,8 @@ namespace LawDepot_Assessment.PageObjects
             BackpackAddBTN.Click();
         }
 
-        /*        public void RemoveBackpackFromCart()
-                {
-                    Assert.That(BackpackRemoveBTN.Displayed);
-                    BackpackRemoveBTN.Click();
-                }*/
-
         public void GotoShoppingCart()
         {
-            /*            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                        wait.Until(ExpectedConditions.ElementToBeClickable(ShoppingCartBTN));*/
             Assert.That(ShoppingCartBTN.Displayed);
             ShoppingCartBTN.Click();
         }

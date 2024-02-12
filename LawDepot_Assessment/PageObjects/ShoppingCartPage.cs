@@ -13,7 +13,9 @@ namespace LawDepot_Assessment.PageObjects
 {
     public class ShoppingCartPage
     {
+        //declaring webdriver and webelements 
         private IWebDriver driver;
+        private WebDriverWait wait;
 
         public IWebElement ShoppingCart { get; private set; }
         public IWebElement RemoveBTN { get; private set; }
@@ -22,19 +24,42 @@ namespace LawDepot_Assessment.PageObjects
 
         public ShoppingCartPage(IWebDriver driver)
         {
+            //initializing WebDriverWait and passing driver object into constructor
             this.driver = driver;
-            InitializePageElements();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        private void InitializePageElements()
+        public void InitializePageElements()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
+            // Initialize elements
             ShoppingCart = wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[@class='shopping_cart_link']")));
+
             RemoveBTN = wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("#remove-sauce-labs-backpack")));
+
             CheckoutBTN = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("checkout")));
+
             ContShoppingBTN = wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("#continue-shopping")));
         }
+
+        public void BackToShoppingBTNVisible()
+        {
+            Assert.That(ContShoppingBTN.Displayed);
+        }
+        public void ClickRemoveBTN()
+        {
+            RemoveBTN.Click();
+        }
+
+        public void ClickBackToShopping()
+        {
+            ContShoppingBTN.Click();
+        }
+        public void ClickCheckoutBTN()
+        {
+            CheckoutBTN.Click();
+        }
+
+
     }
 
 }

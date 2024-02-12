@@ -1,4 +1,5 @@
-﻿using LawDepot_Assessment.BaseClass;
+﻿using AventStack.ExtentReports;
+using LawDepot_Assessment.BaseClass;
 using LawDepot_Assessment.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -16,21 +17,35 @@ namespace LawDepot_Assessment.Tests
         [Test]
         public void CheckBackAndRemoveBTNToShoppingListFromCart()
         {
+            //ExtentReports variable to store test results
+            test = extent.CreateTest("CheckBackAndRemoveBTNToShoppingListFromCart", "Verify Back and Remove button functionality");
+
+            //Creating Object of PageObject class to access WebElements 
             LoginPage loginPage = new LoginPage(driver);
+            loginPage.InitializePageElements();
+            test.Log(Status.Info, "Initialized LoginPage elements.");
             loginPage.Login();
 
+            //Creating Object of PageObject class to access WebElements 
             ItemListPage itemListPage = new ItemListPage(driver);
+            itemListPage.InitializePageElements();
+            test.Log(Status.Info, "Initialized ItemListPage elements.");
             itemListPage.AssertBackpackItem();
             itemListPage.AddBackpackToCart();
             itemListPage.GotoShoppingCart();
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
+            //Creating Object of PageObject class to access WebElements 
             ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
-            Assert.That(shoppingCartPage.ContShoppingBTN.Displayed);
-            shoppingCartPage.RemoveBTN.Click();
-
-            shoppingCartPage.ContShoppingBTN.Click();
-            Thread.Sleep(5000);
+            shoppingCartPage.InitializePageElements();
+            test.Log(Status.Info, "Initialized ShoppingCartPage elements.");
+            shoppingCartPage.BackToShoppingBTNVisible();
+            shoppingCartPage.ClickRemoveBTN();
+            Thread.Sleep(3000);
+            shoppingCartPage.ClickBackToShopping();
+            Thread.Sleep(3000);
+            test.Log(Status.Pass, "Remove item from cart button is working.");
+            test.Log(Status.Pass, "BackToShoppingCart button is working.");
 
         }
 
